@@ -23,10 +23,17 @@ public:
     void log(const T &value)
     {
         std::ostringstream oss;
-        oss << this->ANSI_COLOR_YELLOW;
         oss << value;
         std::cout << oss.str() << std::endl;
-        std::cout << this->ANSI_COLOR_RESET;
+    }
+
+    template <typename T>
+    void warn(const T &value){
+      std::ostringstream oss;
+      oss << this->ANSI_COLOR_YELLOW;
+      oss << value;
+      std::cout << oss.str() << std::endl;
+      std::cout << this->ANSI_COLOR_RESET;
     }
 };
 
@@ -39,6 +46,8 @@ int main()
         console.log(true);
         console.log(123);
         console.log(12.65f);
+
+        console.warn("{\n\tWARNING: 000\n\tDETAILS: lorem ipsum\n}");
         return 0;
     }
     catch (const std::exception &e)
